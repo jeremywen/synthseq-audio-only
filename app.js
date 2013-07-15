@@ -1,3 +1,6 @@
+String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
+Array.prototype.contains = function ( needle ) { for (i in this) { if (this[i] == needle) return true; } return false; }
+
 var bpm = 128;
 var maxCols = 8;
 var maxRows = 11;
@@ -21,11 +24,13 @@ sc.use("prototype");
 timbre.setup({f64:true});
 console.log("timbre.samplerate = ",timbre.samplerate);
 
-if (isFirefoxOS) { 
+//if (isFirefoxOS) { 
   // bpm = 60;
-  timbre.setup({samplerate:timbre.samplerate * 0.5}); 
+  // ACCEPT_SAMPLERATES = [8000,11025,12000,16000,22050,24000,32000,44100,48000]; //default 44100
+  // ACCEPT_CELLSIZES = [32,64,128,256]; //default 64
+  timbre.setup({samplerate:8000, cellsize:32}); 
   console.log("reduced timbre.samplerate = ",timbre.samplerate);
-}
+//}
 
 function runSequencer(){
   var scale = new sc.Scale.minor();
